@@ -899,3 +899,60 @@ branch 'main' set up to track 'origin/main'.
 To rebase or after upload from GUI then resync
 
 git pull --rebase origin main
+
+
+
+
+[root@ansible-rhel9 ocp-claude-skills]# git pull --rebase origin main
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (14/14), done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 13 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (13/13), 314.88 KiB | 3.31 MiB/s, done.
+From github.com:ibanerjeedoc21-source/ocp-claude-skills
+ * branch            main       -> FETCH_HEAD
+   cba5e51..79fe982  main       -> origin/main
+Updating cba5e51..79fe982
+Fast-forward
+ 10.png         | Bin 0 -> 51906 bytes
+ 2.png          | Bin 0 -> 27018 bytes
+ 3.png          | Bin 0 -> 21490 bytes
+ 4.png          | Bin 0 -> 36549 bytes
+ 5.png          | Bin 0 -> 36275 bytes
+ 6.png          | Bin 0 -> 31398 bytes
+ 7.png          | Bin 0 -> 46990 bytes
+ 8.png          | Bin 0 -> 61981 bytes
+ 9.png          | Bin 0 -> 22973 bytes
+ MCP-server.png | Bin 0 -> 22853 bytes
+ MOP.txt        | 901 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 11 files changed, 901 insertions(+)
+ create mode 100644 10.png
+ create mode 100644 2.png
+ create mode 100644 3.png
+ create mode 100644 4.png
+ create mode 100644 5.png
+ create mode 100644 6.png
+ create mode 100644 7.png
+ create mode 100644 8.png
+ create mode 100644 9.png
+ create mode 100644 MCP-server.png
+ create mode 100644 MOP.txt
+
+
+[root@ansible-rhel9 ocp-claude-skills]# mkdir demo-screenshot
+[root@ansible-rhel9 ocp-claude-skills]# mv *.png demo-screenshot/
+[root@ansible-rhel9 ocp-claude-skills]# ls -la
+total 140
+drwxr-xr-x   5 root root   186 Apr 17 11:25 .
+dr-xr-xr-x. 22 root root  4096 Apr 17 06:59 ..
+drwxr-xr-x   3 root root    47 Apr 17 08:51 .claude
+-rw-r--r--   1 root root  1030 Apr 17 07:14 CLAUDE.md
+drwxr-xr-x   2 root root   146 Apr 17 11:25 demo-screenshot
+drwxr-xr-x   8 root root  4096 Apr 17 11:23 .git
+-rw-r--r--   1 root root     0 Apr 17 07:01 LICENSE
+-rw-r--r--   1 root root   136 Apr 17 08:34 .mcp.json
+-rw-r--r--   1 root root 86054 Apr 17 11:23 MOP.txt
+-rw-r--r--   1 root root  6367 Apr 17 08:15 ocp_mcp_server.py
+-rw-r--r--   1 root root 23204 Apr 17 09:29 README.md
+-rw-r--r--   1 root root     8 Apr 17 07:33 requirements.txt
+
