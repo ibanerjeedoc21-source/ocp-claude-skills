@@ -1,0 +1,11 @@
+{
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "ocp-mcp"
+  ],
+  "permissions": {
+    "allow": [
+      "mcp__ocp-mcp__get_pods"
+    ]
+  }
+}
