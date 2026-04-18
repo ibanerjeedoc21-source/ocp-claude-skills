@@ -5,7 +5,7 @@
 [![FastMCP](https://img.shields.io/badge/FastMCP-3.2.4-blue)](https://gofastmcp.com)
 [![OCP](https://img.shields.io/badge/OpenShift-4.12%2B-red)](https://www.redhat.com/en/technologies/cloud-computing/openshift)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-Compatible-green)](https://code.claude.com)
-[![License](https://img.shields.io/badge/License-GPL--3.0-yellow)](LICENSE)
+[![License](https://img.shields.io/badge/License-Apache%202.0-yellow)](LICENSE)
 
 ---
 
@@ -20,8 +20,16 @@ Just describe what you want — Claude calls the right tool automatically.
 "Are all cluster operators healthy?"
 "Show pods in namespace openshift-monitoring"
 "What OCP version is running?"
-"Deploy nginx in the dev namespace"
 ```
+
+---
+
+## Current Scope
+
+This skill focuses on **OpenShift cluster management** — login, node health, pod status, and cluster operator monitoring. All tools below marked ✓ are fully tested against a live OCP 4.14 cluster.
+
+> **Note:** The `nginx_deploy` skill is included in the codebase as a contribution template but has **not been fully tested**.
+> Community contributions to extend, test, or improve it are very welcome — see the Contributing section below.
 
 ---
 
@@ -47,16 +55,16 @@ Result returned and analyzed by Claude
 
 ## Skills & Tools
 
-| Skill | Tool | Description |
-|---|---|---|
-| login_status | `check_login` | Show current user and server URL |
-| login_status | `ocp_login` | Login to an OCP cluster |
-| pod_status | `get_pods` | Get all pods in a namespace |
-| pod_status | `get_nodes` | Get all nodes and status |
-| pod_status | `get_cluster_operators` | Check all cluster operators |
-| pod_status | `get_cluster_version` | Get OCP version |
-| nginx_deploy | `deploy_nginx` | Deploy nginx using UBI image |
-| nginx_deploy | `get_nginx_route` | Get exposed route URL |
+| Skill | Tool | Status | Description |
+|---|---|---|---|
+| login_status | `check_login` | ✓ Tested | Show current user and server URL |
+| login_status | `ocp_login` | ✓ Tested | Login to an OCP cluster |
+| pod_status | `get_pods` | ✓ Tested | Get all pods in a namespace |
+| pod_status | `get_nodes` | ✓ Tested | Get all nodes and status |
+| pod_status | `get_cluster_operators` | ✓ Tested | Check all cluster operators |
+| pod_status | `get_cluster_version` | ✓ Tested | Get OCP version |
+| nginx_deploy | `deploy_nginx` | ⚠ Contribution Welcome | Deploy nginx using UBI image |
+| nginx_deploy | `get_nginx_route` | ⚠ Contribution Welcome | Get exposed route URL |
 
 ---
 
@@ -79,6 +87,7 @@ cd ocp-claude-skills
 
 # Install dependency
 pip3 install fastmcp
+
 # On RHEL9 with multiple Python versions:
 python3.12 -m pip install fastmcp
 
@@ -155,7 +164,7 @@ ocp-claude-skills/
     └── skills/
         ├── login_status/SKILL.md    ← Login skill instructions
         ├── pod_status/SKILL.md      ← Pod/node/CO skill instructions
-        └── nginx_deploy/SKILL.md   ← Nginx deploy skill instructions
+        └── nginx_deploy/SKILL.md   ← Nginx deploy (contribution welcome)
 ```
 
 ---
@@ -164,7 +173,7 @@ ocp-claude-skills/
 
 | Component | Version |
 |---|---|
-| OCP | 4.18 |
+| OCP | 4.14 |
 | Kubernetes | v1.31.11 |
 | FastMCP | 3.2.4 |
 | Python | 3.12 |
@@ -178,9 +187,9 @@ ocp-claude-skills/
 This skill implements all three MCP primitives:
 
 ```
-Tools     → oc command execution        (8 tools)
-Prompts   → reusable analysis templates (3 prompts)
-Resources → live cluster context        (2 resources)
+Tools     → oc command execution         (8 tools)
+Prompts   → reusable analysis templates  (3 prompts)
+Resources → live cluster context         (2 resources)
 ```
 
 ---
@@ -192,19 +201,27 @@ Resources → live cluster context        (2 resources)
 - [ ] `oc logs` streaming via WebSocket transport
 - [ ] OpenShift AI / RHOAI namespace monitoring
 - [ ] HTTP+SSE transport for remote VM access
+- [ ] Test and complete nginx_deploy skill
+
+---
+
+## Contributing
+
+Issues and PRs are welcome!
+
+- To **test and complete** the nginx_deploy skill — see `.claude/skills/nginx_deploy/SKILL.md`
+- To **add new OCP tools** — follow the existing pattern in `ocp_mcp_server.py` and add a corresponding SKILL.md
+- Please keep tools compatible with both **Claude Code** and **Aider** (use `**Triggers:**` and `**Run:**` annotations in SKILL.md)
 
 ---
 
 ## Author
 
 **Indranil Banerjee**  
-Senior Technical Consultant — HPE  
-RHCS OpenShift Admin | Azure Solution Architect | NVIDIA AI Infrastructure  
-18+ years Unix/Linux/DevOps/OCP infrastructure
-
----
-
-## Contributing
-
-Issues and PRs welcome. If you extend this with new OCP tools, please follow the existing SKILL.md pattern so tools stay Claude Code + Aider compatible.
+Senior Technical Consultant @ HPE (current) | ex-TCS | ex-Wipro  
+OpenShift • DevOps • Multi-Cloud | Building with RAG, Agentic AI & Claude  
+NVIDIA + Azure AI Certified | RHCS OpenShift Admin  
+18+ years Unix/Linux/DevOps/OCP infrastructure  
+📍 Kolkata, West Bengal, India  
+[LinkedIn](https://www.linkedin.com/in/indranil-banerjee-894a5016) · [Medium](https://i-banerjee83.medium.com)
 
